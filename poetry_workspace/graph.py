@@ -36,7 +36,11 @@ class DependencyGraph:
             for dep in package.all_requires:
                 found = repo.find_packages(dep)
                 if len(found) == 0:
-                    raise ValueError(f"no packages found for dependency {dep.name}")
+                    # While this appears to be a great cause for concern,
+                    # It actually is fine. There are many precedents like this within
+                    # poetry codebase. The key insight here is that a dependency
+                    # can get filtered out for python version override reasons.
+                    continue
                 if len(found) > 1:
                     raise ValueError(f"multiple packages found for dependency {dep.name}")
 
