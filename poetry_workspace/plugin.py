@@ -2,7 +2,8 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any, Optional, Union
 
 from cleo.events.console_events import COMMAND
-from poetry.console.commands.installer_command import EnvCommand, InstallerCommand
+from poetry.console.commands.env_command import EnvCommand
+from poetry.console.commands.installer_command import InstallerCommand
 from poetry.core.factory import Factory as BaseFactory
 from poetry.core.pyproject.toml import PyProjectTOML
 from poetry.core.version.pep440.version import PEP440Version
