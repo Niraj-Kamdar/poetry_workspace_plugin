@@ -4,7 +4,7 @@ This experimental tool is a [Poetry Plugin](https://python-poetry.org/docs/maste
 
 ## Installation
 
-Make sure you are using at least Poetry 1.2.0a2. To install this preview release, run:
+Make sure you are using at least Poetry 1.2.0b3. To install this preview release, run:
 
 ```shell
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python - --preview
@@ -13,14 +13,19 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-
 Install this plugin:
 
 ```shell
-poetry plugin add poetry-workspace-plugin
+poetry plugin add poetry-workspace-plugin2
 ```
+
+### Why plugin2?
+
+The [original package](https://pypi.org/project/poetry-workspace-plugin/) was released by [Martin Liu](https://pypi.org/user/martinxsliu/), a former OpenDoor employee. Before he left, he [re-released the project](https://pypi.org/project/poetry-workspace-plugin2/) under the [OpenDoor PyPI account](https://pypi.org/user/opendoor/).
 
 ## Workspace
 
 A workspace is a collection of Poetry projects that share a single environment.
 
 ## Example config to place at the root
+
 ```
 [tool.poetry]
 name = "code"
