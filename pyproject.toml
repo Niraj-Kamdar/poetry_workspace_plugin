@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "poetry-workspace-plugin"
+name = "poetry-workspace-plugin2"
 version = "0.5.5"
 description = "Multi project workspace plugin for Poetry"
 authors = ["Martin Liu <martin.xs.liu@gmail.com>"]

@@ -3,7 +3,8 @@ from glob import glob
 from pathlib import Path
 from typing import TYPE_CHECKING, List, Optional, Set
 
-from poetry.core import json
+from poetry.core import json as poetry_core_json
+from poetry import json as poetry_json
 from poetry.core.packages.directory_dependency import DirectoryDependency
 from poetry.factory import Factory
 
@@ -119,4 +120,9 @@ def monkeypatch_json_schema() -> None:
     one that includes the schema for `tool.poetry.workspace` section. See
     schemas/gen_schema.py for details.
     """
-    json.SCHEMA_DIR = os.path.join(os.path.dirname(__file__), "schemas")
+    replacement_schema_dir = = os.path.join(os.path.dirname(__file__), "schemas")
+    poetry_core_json.SCHEMA_DIR 
+    # poetry.json.__init__.py imports `poetry_core_json.SCHEMA_DIR`
+    # before we have the opportunity to monkey patch it
+    # so we have to patch it too
+    poetry_json.CORE_SCHEMA_DIR = replacement_schema_dir
