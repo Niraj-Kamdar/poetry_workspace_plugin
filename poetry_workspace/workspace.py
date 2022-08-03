@@ -120,7 +120,7 @@ def monkeypatch_json_schema() -> None:
     one that includes the schema for `tool.poetry.workspace` section. See
     schemas/gen_schema.py for details.
     """
-    replacement_schema_dir = = os.path.join(os.path.dirname(__file__), "schemas")
+    replacement_schema_dir = os.path.join(os.path.dirname(__file__), "schemas")
     poetry_core_json.SCHEMA_DIR 
     # poetry.json.__init__.py imports `poetry_core_json.SCHEMA_DIR`
     # before we have the opportunity to monkey patch it
