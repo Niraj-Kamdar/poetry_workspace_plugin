@@ -64,7 +64,7 @@ extra_field = true
 """
     )
     pyproject = PyProjectTOML(non_workspace_pyproject)
-    with pytest.raises(RuntimeError):
+    with pytest.raises(WorkspaceError):
         Workspace(pyproject, NullIO())
 
 
@@ -77,7 +77,7 @@ include = 123
 """
     )
     pyproject = PyProjectTOML(non_workspace_pyproject)
-    with pytest.raises(RuntimeError):
+    with pytest.raises(TypeError):
         Workspace(pyproject, NullIO())
 
 

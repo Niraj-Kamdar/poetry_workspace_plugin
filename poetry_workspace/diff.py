@@ -136,5 +136,5 @@ class Diff:
                 temp_package_path.parent.mkdir(parents=True)
                 temp_package_path.write_text(package_contents)
 
-            locked_repo = locker.locked_repository(with_dev_reqs=True)
+            locked_repo = locker.locked_repository()
             return DependencyGraph(locked_repo, [])

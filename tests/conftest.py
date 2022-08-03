@@ -51,7 +51,7 @@ def build_repo(deps: Dict[str, List[str]]) -> Repository:
         for dep in package_deps:
             package.add_dependency(Dependency(dep, "*"))
         packages.append(package)
-    return Repository(packages)
+    return Repository("fakerepo", packages)
 
 
 def assert_packages(packages: List[Package], names: List[str]) -> None:
