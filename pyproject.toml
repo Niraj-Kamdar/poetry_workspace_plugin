@@ -10,8 +10,8 @@ packages = [{include = "poetry_workspace"}]
 poetry-workspace-plugin = "poetry_workspace.plugin:WorkspacePlugin"
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
-poetry = {version = "^1.2.0a2", allow-prereleases = true}
+python = "^3.7"
+poetry = {version = "^1.2.0b3", allow-prereleases = true}
 
 [tool.poetry.group.dev.dependencies]
 black = "^21.7-beta.0"
