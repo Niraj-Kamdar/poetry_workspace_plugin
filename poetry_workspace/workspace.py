@@ -49,7 +49,7 @@ class Workspace:
     @property
     def graph(self) -> DependencyGraph:
         if self._graph is None:
-            locked_repo = self.poetry.locker.locked_repository(with_dev_reqs=True)
+            locked_repo = self.poetry.locker.locked_repository()
             self._graph = DependencyGraph(locked_repo, [p.package for p in self.projects])
         return self._graph
 
