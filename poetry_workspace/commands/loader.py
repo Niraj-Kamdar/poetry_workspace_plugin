@@ -6,6 +6,7 @@ if TYPE_CHECKING:
     from poetry.console.commands.command import Command
 
 COMMAND_NAMES = [
+    "export",
     "build",
     "workspace build",
     "workspace list",

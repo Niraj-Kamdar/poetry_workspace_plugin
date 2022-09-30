@@ -14,6 +14,7 @@ from poetry.poetry import Poetry
 from poetry_workspace.commands import loader
 from poetry_workspace.commands.workspace.workspace import WorkspaceCommand
 from poetry_workspace.workspace import Workspace, is_workspace_pyproject
+from poetry_workspace.commands.export import ExportCommand
 
 if TYPE_CHECKING:
     from cleo.events.console_command_event import ConsoleCommandEvent
@@ -41,7 +42,7 @@ class WorkspacePlugin(ApplicationPlugin):
         if isinstance(command, EnvCommand):
             monkeypatch_env_manager(workspace)
 
-        if isinstance(command, InstallerCommand):
+        if isinstance(command, (InstallerCommand, ExportCommand)):
             set_installer_poetry(command, event.io, workspace)
             monkeypatch_version_solver(workspace)
 
