@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetry-workspace-plugin2"
-version = "0.5.7"
+version = "0.5.8"
 description = "Multi project workspace plugin for Poetry"
 authors = ["Martin Liu <martin.xs.liu@gmail.com>", "Logan Collins <logan.collins@opendoor.com>"]
 readme = "README.md"
@@ -13,13 +13,13 @@ poetry-workspace-plugin = "poetry_workspace.plugin:WorkspacePlugin"
 python = "^3.7"
 poetry = {version = "^1.2.0b3", allow-prereleases = true}
 poetry-plugin-export = "^1.0.7"
-ipdb = ">=0.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^21.7-beta.0"
 isort = "^5.9.3"
 mypy = "^0.910"
 pytest = "^6.2.5"
+ipdb = ">=0.0.0"
 
 [tool.black]
 line-length = 120
