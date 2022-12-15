@@ -54,10 +54,10 @@ class Workspace:
         return self._graph
 
     def find_project(self, name: str) -> Optional["Poetry"]:
-        for project in self.projects:
-            if project.package.name == name:
-                return project
-        return None
+        return next(
+            (project for project in self.projects if project.package.name == name),
+            None,
+        )
 
     def _find_projects(self, pyproject: "PyProjectTOML") -> List["Poetry"]:
         content = pyproject.data["tool"]["poetry"]["workspace"]
@@ -85,7 +85,7 @@ class Workspace:
         return [Factory().create_poetry(Path(path)) for path in sorted(matches)]
 
     def _add_project_dependencies(self) -> None:
-        requires = set(pkg.name for pkg in self.poetry.package.requires)
+        requires = {pkg.name for pkg in self.poetry.package.requires}
 
         for project in self.projects:
             name = project.pyproject.poetry_config["name"]

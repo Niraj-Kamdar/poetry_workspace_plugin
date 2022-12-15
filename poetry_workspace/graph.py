@@ -27,9 +27,7 @@ class DependencyGraph:
             self._deps[package] = []
             self._rdeps[package] = []
 
-            # Add non-default dependency groups.
-            workspace_package = self._workspace_packages.get(package.name)
-            if workspace_package:
+            if workspace_package := self._workspace_packages.get(package.name):
                 package._dependency_groups = workspace_package._dependency_groups
 
         for package in repo.packages:
@@ -111,10 +109,10 @@ class DependencyGraph:
         return sorted(results, key=lambda package: (self._levels[package], package.name))
 
     def find_package(self, name: str) -> "Package":
-        results = self._repo.search(name)
-        if not results:
+        if results := self._repo.search(name):
+            return results[0]
+        else:
             raise GraphError(f"Project '{name}' is not in the dependency graph")
-        return results[0]
 
 
 def topological_sort(
