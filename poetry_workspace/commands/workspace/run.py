@@ -62,8 +62,7 @@ class WorkspaceRunCommand(WorkspaceCommand, EnvCommand):
             return 0
 
         for proc, io in self._procs:
-            exit_code = self._communicate(proc, io)
-            if exit_code:
+            if exit_code := self._communicate(proc, io):
                 return exit_code
 
         return 0

@@ -45,8 +45,7 @@ class WorkspaceCommand(Command):
             self.line("The 'workspace' command is only supported from within a workspace", style="error")
             return 1
 
-        exit_code = self.pre_handle()
-        if exit_code:
+        if exit_code := self.pre_handle():
             return exit_code
 
         for project in self.selected_projects():
@@ -55,15 +54,12 @@ class WorkspaceCommand(Command):
                 self.line(f"Project {project.name} not found in workspace", style="error")
                 return 1
 
-            exit_code = self.handle_each(poetry, self._io_for_project(project.name))
-            if exit_code:
+            if exit_code := self.handle_each(
+                poetry, self._io_for_project(project.name)
+            ):
                 return exit_code
 
-        exit_code = self.post_handle()
-        if exit_code:
-            return exit_code
-
-        return 0
+        return exit_code if (exit_code := self.post_handle()) else 0
 
     def pre_handle(self) -> int:
         return 0
@@ -98,14 +94,17 @@ class WorkspaceCommand(Command):
         if self.option("include-reverse-dependencies"):
             changed.extend(diff.get_changed_external(ref))
 
-        if not changed:
-            return []
-
-        return self.workspace.graph.search(
-            package_names=[package.name for package in changed],
-            include_dependencies=self.option("include-dependencies"),
-            include_reverse_dependencies=self.option("include-reverse-dependencies"),
-            include_external=include_external,
+        return (
+            self.workspace.graph.search(
+                package_names=[package.name for package in changed],
+                include_dependencies=self.option("include-dependencies"),
+                include_reverse_dependencies=self.option(
+                    "include-reverse-dependencies"
+                ),
+                include_external=include_external,
+            )
+            if changed
+            else []
         )
 
     def _io_for_project(self, name: str) -> IO:

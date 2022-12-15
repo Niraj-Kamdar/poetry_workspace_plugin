@@ -77,17 +77,16 @@ external to the workspace in the dependency list."""
 
     def write_tree(self, project_name: str, tree: dict, last_levels: List[bool]) -> None:
         for i, is_last in enumerate(last_levels):
-            if i != len(last_levels) - 1:
-                if not is_last:
-                    self.io.write("│   ")
-                else:
-                    self.io.write("    ")
-            else:
+            if i == len(last_levels) - 1:
                 if not is_last:
                     self.io.write("├── ")
                 else:
                     self.io.write("└── ")
 
+            elif not is_last:
+                self.io.write("│   ")
+            else:
+                self.io.write("    ")
         self.line(project_name)
         for i, (dep_name, dep_tree) in enumerate(tree.items()):
             self.write_tree(dep_name, dep_tree, last_levels + [i == len(tree) - 1])

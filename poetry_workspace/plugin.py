@@ -100,7 +100,7 @@ def monkeypatch_version_solver(workspace: Workspace) -> None:
     from poetry.mixology.version_solver import VersionSolver
 
     original_method = VersionSolver.solve
-    workspace_packages = set(project.package.name for project in workspace.projects)
+    workspace_packages = {project.package.name for project in workspace.projects}
 
     def solve(self: VersionSolver) -> SolverResult:
         self._use_latest = sorted(set(self._use_latest) | workspace_packages)
